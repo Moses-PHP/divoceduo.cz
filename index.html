@@ -133,9 +133,11 @@
   /* Stacked card (narrow screens): the photo fades out downwards */
   @container (max-width: 639px) {
     .ticket__photo {
-      /* narrower crop: less zoom, focal point shifted so the duo sits centred */
-      --photo-zoom: 1.2;
-      --photo-x: 56%;
+      /* own crop for the narrow, stacked card so the duo sits centred */
+      --photo-zoom: 1.4;
+      --photo-x: 45%;
+      --photo-y: 77%;
+      --photo-fade: 78%;
       -webkit-mask-image: linear-gradient(to bottom, #000 var(--photo-fade), transparent);
       mask-image: linear-gradient(to bottom, #000 var(--photo-fade), transparent);
     }
