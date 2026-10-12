@@ -8,18 +8,21 @@ Hlavní cíl: prodat vstupenky na první koncert „Divoce aneb Holky na tahu“
 ## Web
 
 Statická stránka bez buildu: `index.html` (CSS inline) + `assets/`. Vychází z varianty C,
-tmavé téma (prohozené barvy: vínové pozadí, růžové písmo, karta `#561a20`). Vstupné 250 Kč v předprodeji, 300 Kč na místě.
+tmavé téma (pozadí `#1b0102`, růžové písmo, karta `#391115`). Vstupné 250 Kč v předprodeji, 300 Kč na místě.
 
 - Na počítači (landscape, šířka ≥ 900 px) se logo i karta vstupenky vejdou na první
   obrazovku: hero má výšku `100svh`, logo dostane zbylou výšku (140–440 px).
 - `assets/divoce-logo-ruzova.svg` (na webu) a `assets/divoce-logo.svg` (vínové) = logo
   s `viewBox` souměrným podle slova „Divoce!“ (podtitulky přesahují do stran), takže
   vycentrovaný obrázek centruje samotné slovo.
+- Černobílá fotka se SVG filtrem `#tone` tónuje do palety (stíny = vínová pozadí) a maskou
+  přechází do karty. Výřez řídí proměnné `--photo-x/-y/-zoom/-fade` na `.ticket`.
 
 Náhled: otevřít `index.html` v prohlížeči.
 
 **Veřejně:** https://moses-php.github.io/divoceduo.cz/ – GitHub Pages z větve `master`
 (kořen repa, `.nojekyll`). Repo je kvůli Pages veřejné; každý push do `master` se nasadí.
+Změny se proto jen commitují lokálně a pushují až po potvrzení majitelem.
 OG meta tagy mají absolutní URL na tuto adresu – při změně domény upravit.
 
 ## Návrhy (`navrhy/`)
@@ -35,9 +38,10 @@ v prohlížeči, vedle musí ležet `support.js`.
 
 Varianta A v podkladech (zip „Tři návrhy landing page“) chybí.
 
-Font: Noto Serif Display (extra-condensed), barvy růžová `#fec3e8` + vínová `#290203`.
+Fonty: Noto Serif Display (nadpisy, extra-condensed) + Noto Serif (drobný text),
+barvy růžová `#fec3e8` + vínová `#1b0102`.
 
 ## Doplnit
 
 „O nás“ složeno z jejich úvodního IG příspěvku (25. 8.), nechat si odsouhlasit.
-Facebook a kontakt zatím nejsou. Favicon, fotka ve vyšším rozlišení, případně vlastní doména.
+Kontakt zatím není. Favicon, fotka ve vyšším rozlišení, případně vlastní doména.

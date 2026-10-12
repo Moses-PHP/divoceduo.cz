@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Divoce aneb Holky na tahu · 31. 10. Žlutý pes Pardubice</title>
 <meta name="description" content="První koncert dua Divoce: sobota 31. 10. od 20 hodin, Music Club Žlutý pes, Pardubice. Vstupné 250 Kč v předprodeji, 300 Kč na místě.">
-<meta name="theme-color" content="#290203">
+<meta name="theme-color" content="#1b0102">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Divoce aneb Holky na tahu">
 <meta property="og:description" content="První koncert dua Divoce · sobota 31. 10. od 20 hodin · Music Club Žlutý pes, Pardubice">
@@ -17,10 +17,10 @@
 <style>
   :root {
     color-scheme: dark;
-    --bg: #290203;
+    --bg: #1b0102;
     --ink: #fec3e8;
     --line: rgba(254, 195, 232, .22);
-    --card: #561a20;
+    --card: #391115;
     --card-ink: #fec3e8;
     --pad-x: clamp(20px, 4vw, 56px);
   }
@@ -94,12 +94,22 @@
     color: var(--card-ink);
     border-radius: 18px;
     overflow: hidden;
+    /* overflow alone does not clip the masked photo to the rounded corners */
+    clip-path: inset(0 round 18px);
     container-type: inline-size;
+    /* photo framing: focal point, zoom, where the fade into the card starts */
+    --photo-x: 50%;
+    --photo-y: 64%;
+    --photo-zoom: 1;
+    --photo-fade: 70%;
   }
+  /* B&W photo toned into the palette (#tone) and faded into the card */
   .ticket__photo {
     position: relative;
     min-height: 360px;
-    background: #111;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, #000 var(--photo-fade), transparent);
+    mask-image: linear-gradient(to right, #000 var(--photo-fade), transparent);
   }
   .ticket__photo img {
     position: absolute;
@@ -107,7 +117,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% 64%;
+    object-position: var(--photo-x) var(--photo-y);
+    transform: scale(var(--photo-zoom));
+    transform-origin: var(--photo-x) var(--photo-y);
+    filter: url(#tone);
   }
   .ticket__body {
     display: flex;
@@ -115,11 +128,13 @@
     justify-content: space-between;
     gap: 28px;
     padding: clamp(24px, 3.4vw, 44px);
-    border-left: 2px dashed var(--card-ink);
   }
-  /* Stacked card (narrow screens): perforation runs between photo and text */
+  /* Stacked card (narrow screens): the photo fades out downwards */
   @container (max-width: 639px) {
-    .ticket__body { border-left: 0; border-top: 2px dashed var(--card-ink); }
+    .ticket__photo {
+      -webkit-mask-image: linear-gradient(to bottom, #000 var(--photo-fade), transparent);
+      mask-image: linear-gradient(to bottom, #000 var(--photo-fade), transparent);
+    }
   }
   .ticket__head { display: flex; flex-direction: column; gap: 10px; }
   h1 {
@@ -156,6 +171,10 @@
     letter-spacing: .2em;
     text-transform: uppercase;
     border-radius: 999px;
+  }
+  .cta svg { width: 28px; height: 16px; flex: none; }
+  @container (max-width: 420px) {
+    .cta { padding-inline: 22px; font-size: 15px; letter-spacing: .12em; white-space: nowrap; }
   }
 
   /* Desktop: the hero takes exactly the first screen, the logo gets whatever
@@ -245,6 +264,15 @@
       <circle cx="12" cy="12" r="4.3"/>
       <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/>
     </symbol>
+    <!-- duotone for the photo: shadows = background wine, highlights = near white -->
+    <filter id="tone" color-interpolation-filters="sRGB">
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="0.106 1"/>
+        <feFuncG type="table" tableValues="0.004 0.965"/>
+        <feFuncB type="table" tableValues="0.008 0.980"/>
+      </feComponentTransfer>
+    </filter>
     <symbol id="fb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
       <circle cx="12" cy="12" r="9.5"/>
       <path d="M13.4 21.4V10.6a2.8 2.8 0 0 1 2.8-2.8h1M10.4 13h5.6"/>
@@ -272,7 +300,7 @@
           <dt>Kde</dt><dd>Music Club Žlutý pes<br>Ke koupališti 62, Pardubice</dd>
           <dt>Vstupné</dt><dd>250&nbsp;Kč v předprodeji<br>300&nbsp;Kč na místě</dd>
         </dl>
-        <a class="cta" href="https://www.smsticket.cz/vstupenky/75161-divoce-aneb-holky-na-tahu-pardubice-music-club-zluty-pes-pardubice" target="_blank" rel="noopener">Koupit vstupenku <span aria-hidden="true">→</span></a>
+        <a class="cta" href="https://www.smsticket.cz/vstupenky/75161-divoce-aneb-holky-na-tahu-pardubice-music-club-zluty-pes-pardubice" target="_blank" rel="noopener">Koupit vstupenku <svg viewBox="0 0 28 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8h23M18 2l7 6-7 6"/></svg></a>
       </div>
     </article>
   </section>
