@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wdth,wght@0,62.5..100,300..700;1,62.5..100,300..700&display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:inherit}a:hover{color:inherit;opacity:.8}</style>
+</helmet>
+<div data-screen-label="C – Vstupenka" style="--bg: {{ t.bg }}; --ink: {{ t.ink }}; --line: {{ t.line }}; --card: {{ t.card }}; --cardInk: {{ t.cardInk }}; container-type: inline-size; background: var(--bg, #0e0e0e); color: var(--ink, #fec3e8); font-family: 'Noto Serif Display', serif; min-height: 100%;">
+  <header style="display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px clamp(20px, 4cqi, 56px); font-size: 14px; letter-spacing: 0.24em; text-transform: uppercase;">
+    <a href="https://www.instagram.com/divoceduo" target="_blank" rel="noopener" style="text-decoration: none;">@divoceduo</a>
+    <button onClick="{{ toggleTheme }}" style="font: inherit; letter-spacing: inherit; text-transform: inherit; background: none; border: 0; color: inherit; cursor: pointer; padding: 0;">{{ themeLabel }}</button>
+  </header>
+  <section style="display: flex; flex-direction: column; align-items: center; gap: clamp(32px, 4cqi, 56px); padding: clamp(24px, 4cqi, 56px) clamp(20px, 4cqi, 56px) clamp(64px, 8cqi, 120px);">
+    <img src="{{ logoSrc }}" alt="Divoce! chceme liDI, chceme VOlnost, chceme hodně tanCE" style="width: clamp(280px, 46cqi, 640px); height: auto;">
+    <div style="width: min(100%, 1040px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); background: var(--card, #fec3e8); color: var(--cardInk, #290203); border-radius: 18px; overflow: hidden;">
+      <div style="position: relative; min-height: 360px; background: #111;">
+        <img src="assets/divoce-duo.jpg" alt="Divoce duo na pódiu" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 64%;">
+      </div>
+      <div style="display: flex; flex-direction: column; justify-content: space-between; gap: 28px; padding: clamp(24px, 3.4cqi, 44px); border-left: 2px dashed var(--cardInk, #290203);">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase;">První koncert</span>
+          <h1 style="margin: 0; font-size: clamp(40px, 5cqi, 64px); line-height: 0.95; font-weight: 600; font-stretch: extra-condensed; text-wrap: balance;">Divoce aneb Holky na tahu</h1>
+        </div>
+        <dl style="margin: 0; display: grid; grid-template-columns: auto 1fr; column-gap: 22px; row-gap: 10px; font-size: 18px;">
+          <dt style="font-style: italic; font-stretch: extra-condensed;">Kdy</dt><dd style="margin: 0; font-weight: 600;">sobota 31. 10. od 20 hodin</dd>
+          <dt style="font-style: italic; font-stretch: extra-condensed;">Kde</dt><dd style="margin: 0;">Music Club Žlutý pes<br>Ke koupališti 62, Pardubice</dd>
+          <dt style="font-style: italic; font-stretch: extra-condensed;">Vstupné</dt><dd style="margin: 0;">[Placeholder] 000 Kč</dd>
+        </dl>
+        <a href="https://www.smsticket.cz/vstupenky/75161-divoce-aneb-holky-na-tahu-pardubice-music-club-zluty-pes-pardubice" target="_blank" rel="noopener" style="display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 20px 26px; background: var(--cardInk, #290203); color: var(--card, #fec3e8); text-decoration: none; font-size: 16px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; border-radius: 999px;">Koupit vstupenku <span>→</span></a>
+      </div>
+    </div>
+  </section>
+  <section style="display: flex; flex-direction: column; align-items: center; gap: 24px; padding: clamp(56px, 7cqi, 110px) clamp(20px, 4cqi, 56px); border-top: 1px solid var(--line, rgba(254,195,232,.2)); text-align: center;">
+    <span style="font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase;">O nás</span>
+    <p style="margin: 0; max-width: 760px; font-size: clamp(26px, 3.2cqi, 40px); line-height: 1.2; font-style: italic; font-stretch: extra-condensed; text-wrap: balance;">[Placeholder] Krátké představení dua Divoce.</p>
+  </section>
+  <footer style="display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; padding: 26px clamp(20px, 4cqi, 56px); border-top: 1px solid var(--line, rgba(254,195,232,.2)); font-size: 15px; letter-spacing: 0.08em;">
+    <a href="https://www.instagram.com/divoceduo" target="_blank" rel="noopener" style="text-decoration: none;">Instagram</a>
+    <a href="#" style="text-decoration: none;">Facebook</a>
+    <a href="#" style="text-decoration: none;">[Placeholder] kontakt</a>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;light&quot;],&quot;default&quot;:&quot;dark&quot;,&quot;tsType&quot;:&quot;'dark' | 'light'&quot;}}">
+class Component extends DCLogic {
+  state = { theme: null };
+  renderVals() {
+    const theme = this.state.theme ?? this.props.theme ?? 'dark';
+    const T = {
+      dark: { bg: '#0e0e0e', ink: '#fec3e8', line: 'rgba(254,195,232,.2)', card: '#fec3e8', cardInk: '#290203' },
+      light: { bg: '#fec3e8', ink: '#290203', line: 'rgba(41,2,3,.2)', card: '#fff8fb', cardInk: '#290203' }
+    }[theme];
+    return {
+      t: T,
+      logoSrc: theme === 'dark' ? 'assets/divoce-logo.svg' : 'assets/divoce-logo-vinova.svg',
+      themeLabel: theme === 'dark' ? 'Světlá' : 'Tmavá',
+      toggleTheme: () => this.setState({ theme: theme === 'dark' ? 'light' : 'dark' })
+    };
+  }
+}
+</script>
+</body>
+</html>
