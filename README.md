@@ -1,4 +1,4 @@
-# Divoce – web
+# divoceduo.cz – web dua Divoce
 
 Web dua **Divoce** (Instagram [@divoceduo](https://www.instagram.com/divoceduo)).
 Hlavní cíl: prodat vstupenky na první koncert „Divoce aneb Holky na tahu“
@@ -17,7 +17,7 @@ jen světlé téma (tmavé vypuštěno). Vstupné 250 Kč.
 
 Náhled: otevřít `index.html` v prohlížeči.
 
-**Veřejně:** https://moses-php.github.io/private-divoce-web/ – GitHub Pages z větve `master`
+**Veřejně:** https://moses-php.github.io/divoceduo.cz/ – GitHub Pages z větve `master`
 (kořen repa, `.nojekyll`). Repo je kvůli Pages veřejné; každý push do `master` se nasadí.
 OG meta tagy mají absolutní URL na tuto adresu – při změně domény upravit.
 
