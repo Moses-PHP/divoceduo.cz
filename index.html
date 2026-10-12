@@ -59,6 +59,7 @@
   }
   header { display: flex; align-items: center; gap: 22px; }
   header a { text-decoration: none; }
+  header .ig { width: 22px; height: 22px; }
 
   /* Instagram / Facebook glyphs, single colour (currentColor) */
   .ig-link {
@@ -132,6 +133,9 @@
   /* Stacked card (narrow screens): the photo fades out downwards */
   @container (max-width: 639px) {
     .ticket__photo {
+      /* narrower crop: less zoom, focal point shifted so the duo sits centred */
+      --photo-zoom: 1.2;
+      --photo-x: 56%;
       -webkit-mask-image: linear-gradient(to bottom, #000 var(--photo-fade), transparent);
       mask-image: linear-gradient(to bottom, #000 var(--photo-fade), transparent);
     }
@@ -280,7 +284,7 @@
   </svg>
   <section class="hero">
     <header>
-      <a class="ig-link" href="https://www.instagram.com/divoceduo" target="_blank" rel="noopener" aria-label="Instagram @divoceduo"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><use href="#ig"/></svg>@divoceduo</a>
+      <a class="ig-link" href="https://www.instagram.com/divoceduo" target="_blank" rel="noopener" aria-label="Instagram @divoceduo"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><use href="#ig"/></svg></a>
       <a class="ig-link" href="https://www.facebook.com/61593947932209/" target="_blank" rel="noopener" aria-label="Facebook Divoce duo"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><use href="#fb"/></svg></a>
     </header>
     <div class="logo">
