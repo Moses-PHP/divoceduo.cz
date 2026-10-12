@@ -8,12 +8,13 @@ Hlavní cíl: prodat vstupenky na první koncert „Divoce aneb Holky na tahu“
 ## Web
 
 Statická stránka bez buildu: `index.html` (CSS inline) + `assets/`. Vychází z varianty C,
-jen světlé téma (tmavé vypuštěno). Vstupné 250 Kč.
+tmavé téma (prohozené barvy: vínové pozadí, růžové písmo, karta `#3a0b0e`). Vstupné 250 Kč.
 
 - Na počítači (landscape, šířka ≥ 900 px) se logo i karta vstupenky vejdou na první
   obrazovku: hero má výšku `100svh`, logo dostane zbylou výšku (140–440 px).
-- `assets/divoce-logo.svg` = vínové logo s `viewBox` souměrným podle slova „Divoce!“
-  (podtitulky přesahují do stran), takže vycentrovaný obrázek centruje samotné slovo.
+- `assets/divoce-logo-ruzova.svg` (na webu) a `assets/divoce-logo.svg` (vínové) = logo
+  s `viewBox` souměrným podle slova „Divoce!“ (podtitulky přesahují do stran), takže
+  vycentrovaný obrázek centruje samotné slovo.
 
 Náhled: otevřít `index.html` v prohlížeči.
 
