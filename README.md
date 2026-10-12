@@ -17,6 +17,10 @@ jen světlé téma (tmavé vypuštěno). Vstupné 250 Kč.
 
 Náhled: otevřít `index.html` v prohlížeči.
 
+**Veřejně:** https://moses-php.github.io/private-divoce-web/ – GitHub Pages z větve `master`
+(kořen repa, `.nojekyll`). Repo je kvůli Pages veřejné; každý push do `master` se nasadí.
+OG meta tagy mají absolutní URL na tuto adresu – při změně domény upravit.
+
 ## Návrhy (`navrhy/`)
 
 Handoffy z designu (HTML prototypy, ne produkční kód). Náhled: otevřít `*.dc.html`
@@ -34,5 +38,5 @@ Font: Noto Serif Display (extra-condensed), barvy růžová `#fec3e8` + vínová
 
 ## Doplnit
 
-Text „O nás“, Facebook, kontakt, meta/OG tagy, favicon,
-fotka ve vyšším rozlišení.
+„O nás“ zatím jen jména + odkaz na Instagram (představení mají v příspěvku na IG).
+Facebook a kontakt zatím nejsou. Favicon, fotka ve vyšším rozlišení, případně vlastní doména.
