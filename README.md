@@ -38,5 +38,5 @@ Font: Noto Serif Display (extra-condensed), barvy růžová `#fec3e8` + vínová
 
 ## Doplnit
 
-„O nás“ zatím jen jména + odkaz na Instagram (představení mají v příspěvku na IG).
+„O nás“ složeno z jejich úvodního IG příspěvku (25. 8.), nechat si odsouhlasit.
 Facebook a kontakt zatím nejsou. Favicon, fotka ve vyšším rozlišení, případně vlastní doména.

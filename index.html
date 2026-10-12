@@ -197,15 +197,38 @@
     text-transform: uppercase;
   }
   .about .ig-cta .ig { width: 22px; height: 22px; }
-  .about p {
+  @media (max-width: 480px) {
+    .about .ig-cta { padding: 14px 20px; font-size: 13px; letter-spacing: .12em; }
+  }
+  .about .lead,
+  .about .names,
+  .about .outro {
     margin: 0;
     max-width: 760px;
-    font-size: clamp(26px, 3.2vw, 40px);
-    line-height: 1.2;
-    font-style: italic;
+    font-size: clamp(30px, 4vw, 52px);
+    line-height: 1.1;
+    font-weight: 600;
     font-stretch: extra-condensed;
     text-wrap: balance;
   }
+  .about .names {
+    font-size: clamp(24px, 2.8vw, 34px);
+    font-weight: 400;
+    font-style: italic;
+  }
+  .about .text {
+    max-width: 640px;
+    margin: 8px 0;
+  }
+  .about .text p {
+    margin: 0 0 1em;
+    font-size: clamp(17px, 1.4vw, 19px);
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+  .about .text p:last-child { margin-bottom: 0; }
+  .about .outro { font-size: clamp(26px, 3vw, 40px); font-weight: 400; }
+  .about .outro strong { font-weight: 600; }
 
   footer {
     display: flex;
@@ -256,8 +279,14 @@
 
   <section class="about">
     <span class="label">O nás</span>
-    <p>Alice Vacková &amp; Adéla Gottvaldová</p>
-    <a class="ig-link ig-cta" href="https://www.instagram.com/divoceduo" target="_blank" rel="noopener"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><use href="#ig"/></svg>Kdo jsme? Na Instagramu</a>
+    <h2 class="lead">Jsme prostě dvě holky z&nbsp;Pardubic.</h2>
+    <p class="names">Alice Vacková &amp; Adéla Gottvaldová</p>
+    <div class="text">
+      <p>Potkaly jsme se na zpěvu v&nbsp;ZUŠce, kde jsme se staly součástí milovaného sexteta Gmajor6, se kterým vystupujeme. Postupem času jsme ale přišly na to, že se pohybujeme na stejné vlnové délce, je nám spolu na pódiu dost dobře a&nbsp;že bychom chtěly zpívat i&nbsp;jenom spolu, ve dvou.</p>
+      <p>Zpíváme spolu už nějaký ten pátek, a&nbsp;tak přišel ten správný čas dát našemu „duíčku“ oficiální podobu. Ladí nám to spolu, chceme makat a&nbsp;hlavně tohle celé posunout zase někam dál.</p>
+    </div>
+    <p class="outro">Nenechte si ujít naši cestu, bude to <strong>Divoký!</strong></p>
+    <a class="ig-link ig-cta" href="https://www.instagram.com/divoceduo" target="_blank" rel="noopener"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><use href="#ig"/></svg>Sledujte nás na Instagramu</a>
   </section>
 
   <footer>
