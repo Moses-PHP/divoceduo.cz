@@ -56,6 +56,15 @@
   }
   header a { text-decoration: none; }
 
+  /* Instagram glyph, single colour (currentColor) */
+  .ig-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .6em;
+    text-decoration: none;
+  }
+  .ig { width: 1.3em; height: 1.3em; flex: none; }
+
   /* The logo viewBox is symmetric around "Divoce!" (taglines stick out to the
      sides), so centering the image centers the word itself. */
   .logo {
@@ -156,6 +165,9 @@
       max-width: none;
       margin: 0 0 clamp(16px, 3.5vh, 48px);
     }
+    /* very tall screens: spare height goes evenly above the logo and below the card */
+    .logo { margin-top: auto; }
+    .ticket { margin-bottom: auto; }
     .ticket__photo { min-height: 0; }
     .ticket__body {
       gap: clamp(14px, 2.6vh, 28px);
@@ -175,6 +187,15 @@
     border-top: 1px solid var(--line);
     text-align: center;
   }
+  .about .ig-cta {
+    padding: 14px 26px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    font-size: 15px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+  }
+  .about .ig-cta .ig { width: 22px; height: 22px; }
   .about p {
     margin: 0;
     max-width: 760px;
@@ -199,9 +220,16 @@
 </style>
 </head>
 <body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/>
+      <circle cx="12" cy="12" r="4.3"/>
+      <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/>
+    </symbol>
+  </svg>
   <section class="hero">
     <header>
-      <a href="https://www.instagram.com/divoceduo" target="_blank" rel="noopener">@divoceduo</a>
+      <a class="ig-link" href="https://www.instagram.com/divoceduo" target="_blank" rel="noopener" aria-label="Instagram @divoceduo"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><use href="#ig"/></svg>@divoceduo</a>
     </header>
     <div class="logo">
       <img src="assets/divoce-logo.svg" alt="Divoce! chceme liDI, chceme VOlnost, chceme hodně tanCE">
@@ -227,13 +255,12 @@
 
   <section class="about">
     <span class="label">O nás</span>
-    <p>[Placeholder] Krátké představení dua Divoce.</p>
+    <p>Alice Vacková &amp; Adéla Gottvaldová</p>
+    <a class="ig-link ig-cta" href="https://www.instagram.com/divoceduo" target="_blank" rel="noopener"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><use href="#ig"/></svg>Kdo jsme? Na Instagramu</a>
   </section>
 
   <footer>
-    <a href="https://www.instagram.com/divoceduo" target="_blank" rel="noopener">Instagram</a>
-    <a href="#">[Placeholder] Facebook</a>
-    <a href="#">[Placeholder] kontakt</a>
+    <a class="ig-link" href="https://www.instagram.com/divoceduo" target="_blank" rel="noopener"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><use href="#ig"/></svg>Instagram @divoceduo</a>
   </footer>
 </body>
 </html>
