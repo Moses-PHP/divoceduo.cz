@@ -76,8 +76,8 @@
     position: relative;
     width: 100%;
     aspect-ratio: 816 / 511;
-    max-width: 560px;
-    margin: 8px 0 32px;
+    max-width: min(460px, 80%);
+    margin: 20px 0 48px;
   }
   .logo img {
     position: absolute;
@@ -190,10 +190,10 @@
     .logo {
       flex: 1 1 0;
       aspect-ratio: auto;
-      min-height: 140px;
-      max-height: 440px;
+      min-height: 120px;
+      max-height: min(330px, 34vh);
       max-width: none;
-      margin: 0 0 clamp(16px, 3.5vh, 48px);
+      margin: 0 0 clamp(28px, 6vh, 72px);
     }
     /* very tall screens: spare height goes evenly above the logo and below the card */
     .logo { margin-top: auto; }
