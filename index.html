@@ -57,9 +57,10 @@
     letter-spacing: .24em;
     text-transform: uppercase;
   }
+  header { display: flex; align-items: center; gap: 22px; }
   header a { text-decoration: none; }
 
-  /* Instagram glyph, single colour (currentColor) */
+  /* Instagram / Facebook glyphs, single colour (currentColor) */
   .ig-link {
     display: inline-flex;
     align-items: center;
@@ -200,6 +201,7 @@
     text-transform: uppercase;
   }
   .about .ig-cta .ig { width: 22px; height: 22px; }
+  .socials { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
   @media (max-width: 480px) {
     .about .ig-cta { padding: 14px 20px; font-size: 13px; letter-spacing: .12em; }
   }
@@ -243,10 +245,15 @@
       <circle cx="12" cy="12" r="4.3"/>
       <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/>
     </symbol>
+    <symbol id="fb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <circle cx="12" cy="12" r="9.5"/>
+      <path d="M13.4 21.4V10.6a2.8 2.8 0 0 1 2.8-2.8h1M10.4 13h5.6"/>
+    </symbol>
   </svg>
   <section class="hero">
     <header>
       <a class="ig-link" href="https://www.instagram.com/divoceduo" target="_blank" rel="noopener" aria-label="Instagram @divoceduo"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><use href="#ig"/></svg>@divoceduo</a>
+      <a class="ig-link" href="https://www.facebook.com/61593947932209/" target="_blank" rel="noopener" aria-label="Facebook Divoce duo"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><use href="#fb"/></svg></a>
     </header>
     <div class="logo">
       <img src="assets/divoce-logo-ruzova.svg" alt="Divoce! chceme liDI, chceme VOlnost, chceme hodně tanCE">
@@ -279,7 +286,10 @@
       <p>Zpíváme spolu už nějaký ten pátek, a&nbsp;tak přišel ten správný čas dát našemu „duíčku“ oficiální podobu. Ladí nám to spolu, chceme makat a&nbsp;hlavně tohle celé posunout zase někam dál.</p>
     </div>
     <p class="outro">Nenechte si ujít naši cestu, bude to <strong>Divoký!</strong></p>
-    <a class="ig-link ig-cta" href="https://www.instagram.com/divoceduo" target="_blank" rel="noopener"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><use href="#ig"/></svg>Sledujte nás na Instagramu</a>
+    <div class="socials">
+      <a class="ig-link ig-cta" href="https://www.instagram.com/divoceduo" target="_blank" rel="noopener"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><use href="#ig"/></svg>Sledujte nás na Instagramu</a>
+      <a class="ig-link ig-cta" href="https://www.facebook.com/61593947932209/" target="_blank" rel="noopener"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><use href="#fb"/></svg>a na Facebooku</a>
+    </div>
   </section>
 
 </body>
