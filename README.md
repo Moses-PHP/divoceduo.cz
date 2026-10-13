@@ -1,7 +1,7 @@
 # divoceduo.cz – web dua Divoce
 
 Web dua **Divoce** (Instagram [@divoceduo](https://www.instagram.com/divoceduo)).
-Hlavní cíl: prodat vstupenky na koncert „Divoce aneb Holky na tahu“
+Hlavní cíl: prodat vstupenky na koncert „Divoce! aneb Holky na tahu“
 (sobota 31. 10. 2026 od 20 h, Music Club Žlutý pes, Ke koupališti 62, Pardubice,
 [SMSticket](https://www.smsticket.cz/vstupenky/75161-divoce-aneb-holky-na-tahu-pardubice-music-club-zluty-pes-pardubice)).
 
