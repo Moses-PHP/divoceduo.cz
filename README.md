@@ -44,4 +44,4 @@ barvy růžová `#fec3e8` + vínová `#1b0102`.
 ## Doplnit
 
 „O nás“ odsouhlaseno: text dodala Adéla 13. 10. 2026. Štítek „První koncert“ zrušen (není to první koncert), nyní „Koncert“.
-Kontakt zatím není. Favicon, fotka ve vyšším rozlišení, případně vlastní doména.
+Kontakt zatím není. Favicon „D!“ z glyfů loga (assets/favicon.svg, favicon.ico, apple-touch-icon.png). Fotka ve vyšším rozlišení, případně vlastní doména.
