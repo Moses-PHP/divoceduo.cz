@@ -25,9 +25,10 @@ Náhled: otevřít `index.html` v prohlížeči.
 Změny se proto jen commitují lokálně a pushují až po potvrzení majitelem.
 OG meta tagy mají absolutní URL na tuto adresu – při změně domény upravit.
 
-## Návrhy (`navrhy/`)
+## Návrhy (`navrhy/`, jen lokálně)
 
-Handoffy z designu (HTML prototypy, ne produkční kód). Náhled: otevřít `*.dc.html`
+Handoffy z designu (HTML prototypy, ne produkční kód). Složka je v `.gitignore`,
+aby se pracovní návrhy nepublikovaly přes Pages; drží se jen v lokální kopii. Náhled: otevřít `*.dc.html`
 v prohlížeči, vedle musí ležet `support.js`.
 
 | Složka | Obsah |
