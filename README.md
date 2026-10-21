@@ -20,8 +20,8 @@ tmavé téma (pozadí `#1b0102`, růžové písmo, karta `#391115`). Vstupné 25
 
 Náhled: otevřít `index.html` v prohlížeči.
 
-**Veřejně:** https://moses-php.github.io/divoceduo.cz/ – GitHub Pages z větve `master`
-(kořen repa, `.nojekyll`). Repo je kvůli Pages veřejné; každý push do `master` se nasadí.
+**Veřejně:** https://divoceduo.cz/ – GitHub Pages z větve `master`
+(kořen repa, `.nojekyll`, vlastní doména v `CNAME`; DNS u Active24: 4× A + 4× AAAA na GitHub, `www` CNAME → moses-php.github.io). Repo je kvůli Pages veřejné; každý push do `master` se nasadí.
 Změny se proto jen commitují lokálně a pushují až po potvrzení majitelem.
 OG meta tagy mají absolutní URL na tuto adresu – při změně domény upravit.
 
