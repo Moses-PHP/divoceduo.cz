@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Divoce! aneb Holky na tahu · 31. 10. Žlutý pes Pardubice</title>
-<meta name="description" content="Koncert dua Divoce: sobota 31. 10. od 20 hodin, Music Club Žlutý pes, Pardubice. Vstupné 250 Kč v předprodeji, 300 Kč na místě.">
+<title>Divoce · duo z Pardubic</title>
+<meta name="description" content="Divoce – dvě holky z Pardubic, Alice Vacková a Adéla Gottvaldová. Koncert Divoce! aneb Holky na tahu se odehrál 31. 10. 2026 v Music Clubu Žlutý pes.">
 <meta name="theme-color" content="#1b0102">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Divoce! aneb Holky na tahu">
-<meta property="og:description" content="Koncert dua Divoce · sobota 31. 10. od 20 hodin · Music Club Žlutý pes, Pardubice">
+<meta property="og:title" content="Divoce · duo z Pardubic">
+<meta property="og:description" content="Dvě holky z Pardubic · koncert Divoce! aneb Holky na tahu se odehrál 31. 10. 2026 v Music Clubu Žlutý pes">
 <meta property="og:url" content="https://divoceduo.cz/">
 <meta property="og:image" content="https://divoceduo.cz/assets/divoce-duo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -182,6 +182,18 @@
     border-radius: 999px;
   }
   .cta svg { width: 28px; height: 16px; flex: none; }
+  /* past concert: thank-you note in place of the ticket button */
+  .thanks {
+    margin: 0;
+    padding-top: clamp(14px, 2.4vh, 22px);
+    border-top: 1px solid var(--line);
+    font-family: 'Noto Serif Display', serif;
+    font-size: clamp(22px, 2.2vw, 28px);
+    line-height: 1.2;
+    font-style: italic;
+    font-stretch: condensed;
+    text-wrap: balance;
+  }
   @container (max-width: 420px) {
     .cta { padding-inline: 22px; font-size: 15px; letter-spacing: .12em; white-space: nowrap; }
   }
@@ -301,15 +313,14 @@
       </div>
       <div class="ticket__body">
         <div class="ticket__head">
-          <span class="label">Koncert</span>
+          <span class="label">Koncert · odehráno</span>
           <h1>Divoce! aneb Holky na tahu</h1>
         </div>
         <dl>
-          <dt>Kdy</dt><dd class="strong">sobota 31.&nbsp;10. od 20&nbsp;hodin</dd>
-          <dt>Kde</dt><dd>Music Club Žlutý pes<br>Ke koupališti 62, Pardubice</dd>
-          <dt>Vstupné</dt><dd>250&nbsp;Kč v předprodeji<br>300&nbsp;Kč na místě</dd>
+          <dt>Kdy</dt><dd class="strong">sobota 31.&nbsp;10.&nbsp;2026</dd>
+          <dt>Kde</dt><dd>Music Club Žlutý pes, Pardubice</dd>
         </dl>
-        <a class="cta" href="https://www.smsticket.cz/vstupenky/75161-divoce-aneb-holky-na-tahu-pardubice-music-club-zluty-pes-pardubice" target="_blank" rel="noopener">Koupit vstupenku <svg viewBox="0 0 28 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8h23M18 2l7 6-7 6"/></svg></a>
+        <p class="thanks">Děkujeme všem, kdo s&nbsp;námi byli! Fotky z&nbsp;koncertu sem brzy přidáme.</p>
       </div>
     </article>
   </section>

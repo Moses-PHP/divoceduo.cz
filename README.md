@@ -1,16 +1,18 @@
 # divoceduo.cz – web dua Divoce
 
 Web dua **Divoce** (Instagram [@divoceduo](https://www.instagram.com/divoceduo)).
-Hlavní cíl: prodat vstupenky na koncert „Divoce! aneb Holky na tahu“
+Web vznikl kvůli prodeji vstupenek na koncert „Divoce! aneb Holky na tahu“
 (sobota 31. 10. 2026 od 20 h, Music Club Žlutý pes, Ke koupališti 62, Pardubice,
 [SMSticket](https://www.smsticket.cz/vstupenky/75161-divoce-aneb-holky-na-tahu-pardubice-music-club-zluty-pes-pardubice)).
+Koncert se odehrál – od 2. 11. 2026 je karta „Koncert · odehráno“ (bez vstupného a tlačítka
+na vstupenky, místo něj poděkování) a čeká se na fotky z koncertu.
 
 ## Web
 
 Statická stránka bez buildu: `index.html` (CSS inline) + `assets/`. Vychází z varianty C,
-tmavé téma (pozadí `#1b0102`, růžové písmo, karta `#391115`). Vstupné 250 Kč v předprodeji, 300 Kč na místě.
+tmavé téma (pozadí `#1b0102`, růžové písmo, karta `#391115`). Vstupné bylo 250 Kč v předprodeji, 300 Kč na místě.
 
-- Na počítači (landscape, šířka ≥ 900 px) se logo i karta vstupenky vejdou na první
+- Na počítači (landscape, šířka ≥ 900 px) se logo i karta koncertu vejdou na první
   obrazovku: hero má výšku `100svh`, logo dostane zbylou výšku (140–440 px).
 - `assets/divoce-logo-ruzova.svg` (na webu) a `assets/divoce-logo.svg` (vínové) = logo
   s `viewBox` souměrným podle slova „Divoce!“ (podtitulky přesahují do stran), takže
