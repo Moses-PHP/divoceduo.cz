@@ -4,8 +4,8 @@ Web dua **Divoce** (Instagram [@divoceduo](https://www.instagram.com/divoceduo))
 Web vznikl kvůli prodeji vstupenek na koncert „Divoce! aneb Holky na tahu“
 (sobota 31. 10. 2026 od 20 h, Music Club Žlutý pes, Ke koupališti 62, Pardubice,
 [SMSticket](https://www.smsticket.cz/vstupenky/75161-divoce-aneb-holky-na-tahu-pardubice-music-club-zluty-pes-pardubice)).
-Koncert se odehrál – od 2. 11. 2026 je karta „Koncert · odehráno“ (bez vstupného a tlačítka
-na vstupenky, místo něj poděkování) a čeká se na fotky z koncertu.
+Koncert se odehrál – karta „Koncert · odehráno“ je od 26. 11. 2026 pod blokem nadcházejících
+koncertů, s prolínáním 5 úvodních fotek a galerií všech 27 fotek z koncertu.
 
 ## Web
 
@@ -20,7 +20,17 @@ tmavé téma (pozadí `#1b0102`, růžové písmo, karta `#391115`). Vstupné by
 - Černobílá fotka se SVG filtrem `#tone` tónuje do palety (stíny = vínová pozadí) a maskou
   přechází do karty. Výřez řídí proměnné `--photo-x/-y/-zoom/-fade` na `.ticket`.
 
-Náhled: otevřít `index.html` v prohlížeči.
+- **Kde nás uslyšíte** (hero pod logem): karty `.gig` s `data-end` (konec koncertu, ISO s časovou
+  zónou) – po skončení se karta sama schová, bez karet se schová celý blok. Nový koncert = zkopírovat
+  `<article class="gig">`.
+- **Fotky z koncertu 31. 10.** v `assets/koncert-2026-10-31/`: `01–27.jpg` (2000 px, bez EXIF),
+  `nahled/` (600 px, mřížka galerie), `uvod/01–05.jpg` (1400 px, předem tónované do palety stejně
+  jako filtr `#tone`, prolínají se v kartě; výřez `--x/--y` na každém `<img>`). Pořadí: 1–5 úvodní
+  fotky, dál originály podle názvu. Galerie = `<dialog>` s mřížkou a prohlížečem (šipky, klávesy,
+  swipe, Esc). Autor fotek: doplnit do `.gallery__credit` a odebrat `hidden`.
+
+Náhled: `python3 -m http.server` v kořeni repa a otevřít http://localhost:8000/
+(stačí i otevřít `index.html`).
 
 **Veřejně:** https://divoceduo.cz/ – GitHub Pages z větve `master`
 (kořen repa, `.nojekyll`, vlastní doména v `CNAME`; DNS u Active24: 4× A + 4× AAAA na GitHub, `www` CNAME → moses-php.github.io). Repo je kvůli Pages veřejné; každý push do `master` se nasadí.

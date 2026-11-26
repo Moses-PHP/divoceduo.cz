@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Divoce · duo z Pardubic</title>
-<meta name="description" content="Divoce – dvě holky z Pardubic, Alice Vacková a Adéla Gottvaldová. Koncert Divoce! aneb Holky na tahu se odehrál 31. 10. 2026 v Music Clubu Žlutý pes.">
+<meta name="description" content="Divoce – dvě holky z Pardubic, Alice Vacková a Adéla Gottvaldová. Kde nás uslyšíte a fotky z koncertu Divoce! aneb Holky na tahu (31. 10. 2026, Music Club Žlutý pes).">
 <meta name="theme-color" content="#1b0102">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Divoce · duo z Pardubic">
-<meta property="og:description" content="Dvě holky z Pardubic · koncert Divoce! aneb Holky na tahu se odehrál 31. 10. 2026 v Music Clubu Žlutý pes">
+<meta property="og:description" content="Dvě holky z Pardubic · kde nás uslyšíte a fotky z koncertu Divoce! aneb Holky na tahu">
 <meta property="og:url" content="https://divoceduo.cz/">
 <meta property="og:image" content="https://divoceduo.cz/assets/divoce-duo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,6 +29,7 @@
   }
   * { box-sizing: border-box; }
   html { background: var(--bg); }
+  html:has(dialog[open]) { overflow: hidden; }
   body {
     margin: 0;
     background: var(--bg);
@@ -39,28 +40,38 @@
   }
   a { color: inherit; }
   a:hover { opacity: .8; }
+  button { font: inherit; color: inherit; }
 
   .label {
+    margin: 0;
     font-size: 13px;
+    font-weight: 400;
     letter-spacing: .3em;
     text-transform: uppercase;
   }
+  .display {
+    margin: 0;
+    font-family: 'Noto Serif Display', serif;
+    font-weight: 600;
+    font-stretch: extra-condensed;
+    line-height: .95;
+    text-wrap: balance;
+  }
 
-  /* Hero: logo + ticket card fit the first screen on desktop */
+  /* Hero: logo + upcoming concerts fit the first screen on desktop */
   .hero {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 var(--pad-x) clamp(24px, 4vh, 56px);
+    padding: 0 var(--pad-x) clamp(40px, 6vh, 72px);
   }
   header {
     align-self: stretch;
+    display: flex;
+    align-items: center;
+    gap: 22px;
     padding: 22px 0;
-    font-size: 14px;
-    letter-spacing: .24em;
-    text-transform: uppercase;
   }
-  header { display: flex; align-items: center; gap: 22px; }
   header a { text-decoration: none; }
   header .ig { width: 22px; height: 22px; }
 
@@ -90,6 +101,88 @@
     object-fit: contain;
   }
 
+  /* Upcoming concerts */
+  .gigs {
+    width: min(100%, 1040px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .gigs > .label { text-align: center; }
+  .gigs__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+    gap: 16px;
+  }
+  .gig {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: clamp(18px, 2.4vw, 30px);
+    padding: clamp(22px, 2.6vw, 34px);
+    background: var(--card);
+    color: var(--card-ink);
+    border-radius: 18px;
+  }
+  .gig[hidden] { display: none; }
+  .gig__date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 4.2em;
+    padding-right: clamp(18px, 2.4vw, 30px);
+    border-right: 1px solid var(--line);
+    font-size: 15px;
+    font-style: italic;
+    font-stretch: condensed;
+  }
+  .gig__day {
+    font-size: clamp(44px, 4.6vw, 60px);
+    font-style: normal;
+    white-space: nowrap;
+  }
+  .gig__info { display: flex; flex-direction: column; gap: 8px; }
+  .gig__place { font-size: clamp(28px, 2.8vw, 36px); }
+  .gig__note {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.4;
+    font-style: italic;
+    font-stretch: condensed;
+    text-wrap: balance;
+  }
+  .gig__time {
+    margin: 4px 0 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .gig__time span { font-weight: 400; font-style: italic; }
+
+  /* Desktop: the hero takes exactly the first screen, the logo gets whatever
+     height is left after the header and the concert cards. */
+  @media (min-width: 900px) and (orientation: landscape) {
+    .hero { min-height: 100vh; min-height: 100svh; }
+    .logo {
+      flex: 1 1 0;
+      aspect-ratio: auto;
+      min-height: 120px;
+      max-height: min(360px, 40vh);
+      max-width: none;
+      margin: auto 0 clamp(28px, 6vh, 72px);
+    }
+    .gigs { margin-bottom: auto; }
+  }
+
+  /* Past concert: crossfading photos + gallery */
+  .past {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: clamp(48px, 6vw, 90px) var(--pad-x);
+    border-top: 1px solid var(--line);
+  }
   .ticket {
     width: min(100%, 1040px);
     display: grid;
@@ -101,16 +194,12 @@
     /* overflow alone does not clip the masked photo to the rounded corners */
     clip-path: inset(0 round 18px);
     container-type: inline-size;
-    /* photo framing: focal point, zoom, where the fade into the card starts */
-    --photo-x: 48%;
-    --photo-y: 69%;
-    --photo-zoom: 1.41;
     --photo-fade: 83%;
   }
-  /* B&W photo toned into the palette (#tone) and faded into the card */
+  /* photos are pre-toned into the palette (assets/koncert-…/uvod/) and fade into the card */
   .ticket__photo {
     position: relative;
-    min-height: 360px;
+    min-height: clamp(360px, 44vw, 480px);
     overflow: hidden;
     -webkit-mask-image: linear-gradient(to right, #000 var(--photo-fade), transparent);
     mask-image: linear-gradient(to right, #000 var(--photo-fade), transparent);
@@ -121,11 +210,20 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: var(--photo-x) var(--photo-y);
-    transform: scale(var(--photo-zoom));
-    transform-origin: var(--photo-x) var(--photo-y);
-    filter: url(#tone);
+    object-position: var(--x, 50%) var(--y, 50%);
+    opacity: 0;
+    transition: opacity 1.8s ease;
   }
+  .ticket__photo img.is-on { opacity: 1; }
+  .ticket__zoom {
+    position: absolute;
+    inset: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: zoom-in;
+  }
+  .ticket__zoom:focus-visible { outline: 2px solid var(--ink); outline-offset: -6px; }
   .ticket__body {
     display: flex;
     flex-direction: column;
@@ -136,25 +234,14 @@
   /* Stacked card (narrow screens): the photo fades out downwards */
   @container (max-width: 639px) {
     .ticket__photo {
-      /* own crop for the narrow, stacked card so the duo sits centred */
-      --photo-zoom: 1.4;
-      --photo-x: 45%;
-      --photo-y: 77%;
+      min-height: 300px;
       --photo-fade: 78%;
       -webkit-mask-image: linear-gradient(to bottom, #000 var(--photo-fade), transparent);
       mask-image: linear-gradient(to bottom, #000 var(--photo-fade), transparent);
     }
   }
   .ticket__head { display: flex; flex-direction: column; gap: 10px; }
-  h1 {
-    margin: 0;
-    font-family: 'Noto Serif Display', serif;
-    font-size: clamp(40px, 5vw, 64px);
-    line-height: .95;
-    font-weight: 600;
-    font-stretch: extra-condensed;
-    text-wrap: balance;
-  }
+  .ticket h2 { font-size: clamp(40px, 5vw, 64px); }
   dl {
     margin: 0;
     display: grid;
@@ -166,27 +253,8 @@
   dt { font-style: italic; font-stretch: condensed; }
   dd { margin: 0; }
   .strong { font-weight: 600; }
-  .cta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 14px;
-    padding: 20px 26px;
-    background: var(--card-ink);
-    color: var(--card);
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    border-radius: 999px;
-  }
-  .cta svg { width: 28px; height: 16px; flex: none; }
-  /* past concert: thank-you note in place of the ticket button */
   .thanks {
     margin: 0;
-    padding-top: clamp(14px, 2.4vh, 22px);
-    border-top: 1px solid var(--line);
     font-family: 'Noto Serif Display', serif;
     font-size: clamp(22px, 2.2vw, 28px);
     line-height: 1.2;
@@ -194,33 +262,132 @@
     font-stretch: condensed;
     text-wrap: balance;
   }
+  .cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 18px 26px;
+    border: 0;
+    background: var(--card-ink);
+    color: var(--card);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .cta:hover { opacity: .88; }
+  .cta svg { width: 28px; height: 16px; flex: none; }
   @container (max-width: 420px) {
-    .cta { padding-inline: 22px; font-size: 15px; letter-spacing: .12em; white-space: nowrap; }
+    .cta { padding-inline: 22px; font-size: 14px; letter-spacing: .12em; }
   }
 
-  /* Desktop: the hero takes exactly the first screen, the logo gets whatever
-     height is left after the header and the ticket card. */
-  @media (min-width: 900px) and (orientation: landscape) {
-    .hero { min-height: 100vh; min-height: 100svh; }
-    .logo {
-      flex: 1 1 0;
-      aspect-ratio: auto;
-      min-height: 120px;
-      max-height: min(330px, 34vh);
-      max-width: none;
-      margin: 0 0 clamp(28px, 6vh, 72px);
-    }
-    /* very tall screens: spare height goes evenly above the logo and below the card */
-    .logo { margin-top: auto; }
-    .ticket { margin-bottom: auto; }
-    .ticket__photo { min-height: 0; }
-    .ticket__body {
-      gap: clamp(14px, 2.6vh, 28px);
-      padding: clamp(20px, 3.4vh, 44px) clamp(24px, 3.4vw, 44px);
-    }
-    h1 { font-size: clamp(34px, min(5vw, 6vh), 64px); }
-    dl { font-size: clamp(15px, 2.1vh, 18px); row-gap: clamp(4px, 1vh, 10px); }
-    .cta { padding: clamp(12px, 2vh, 20px) 26px; }
+  /* Gallery: full-screen dialog with a thumbnail grid and a single-photo viewer */
+  .gallery {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: var(--bg);
+    color: var(--ink);
+  }
+  .gallery::backdrop { background: var(--bg); }
+  .gallery__bar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px var(--pad-x);
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(8px);
+  }
+  .icon-btn {
+    display: inline-grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    flex: none;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--bg) 60%, transparent);
+    cursor: pointer;
+  }
+  .icon-btn:hover { border-color: var(--ink); }
+  .icon-btn svg { width: 20px; height: 20px; }
+  .gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(46%, 220px), 1fr));
+    gap: 8px;
+    padding: 8px var(--pad-x) 24px;
+  }
+  .gallery__grid button {
+    display: block;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--card);
+    aspect-ratio: 3 / 2;
+    cursor: zoom-in;
+  }
+  .gallery__grid img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+  }
+  .gallery__grid button:hover img { transform: scale(1.04); }
+  .gallery__credit {
+    margin: 0;
+    padding: 0 var(--pad-x) 32px;
+    font-size: 14px;
+    font-style: italic;
+    text-align: center;
+  }
+  .viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    background: #0e0001;
+    touch-action: pan-y;
+  }
+  .viewer[hidden] { display: none; }
+  .viewer__img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  .viewer__close { position: absolute; top: 14px; right: 14px; }
+  .viewer__nav { position: absolute; top: 50%; translate: 0 -50%; }
+  .viewer__nav--prev { left: 14px; }
+  .viewer__nav--next { right: 14px; }
+  .viewer__count {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    translate: -50% 0;
+    font-size: 14px;
+    letter-spacing: .2em;
+  }
+  @media (hover: none) {
+    /* swipe on touch screens, keep the arrows out of the photo */
+    .viewer__nav { display: none; }
   }
 
   .about {
@@ -276,6 +443,9 @@
   .about .outro { font-size: clamp(26px, 3vw, 40px); font-weight: 400; }
   .about .outro strong { font-weight: 600; }
 
+  @media (prefers-reduced-motion: reduce) {
+    .ticket__photo img, .gallery__grid img { transition: none; }
+  }
 </style>
 </head>
 <body>
@@ -285,18 +455,18 @@
       <circle cx="12" cy="12" r="4.3"/>
       <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/>
     </symbol>
-    <!-- duotone for the photo: shadows = background wine, highlights = near white -->
-    <filter id="tone" color-interpolation-filters="sRGB">
-      <feColorMatrix type="saturate" values="0"/>
-      <feComponentTransfer>
-        <feFuncR type="table" tableValues="0.106 1"/>
-        <feFuncG type="table" tableValues="0.004 0.965"/>
-        <feFuncB type="table" tableValues="0.008 0.980"/>
-      </feComponentTransfer>
-    </filter>
     <symbol id="fb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
       <circle cx="12" cy="12" r="9.5"/>
       <path d="M13.4 21.4V10.6a2.8 2.8 0 0 1 2.8-2.8h1M10.4 13h5.6"/>
+    </symbol>
+    <symbol id="arrow" viewBox="0 0 28 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1 8h25M19 1l7 7-7 7"/>
+    </symbol>
+    <symbol id="close" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <path d="M3 3l14 14M17 3L3 17"/>
+    </symbol>
+    <symbol id="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 3l-7 7 7 7"/>
     </symbol>
   </svg>
   <section class="hero">
@@ -304,23 +474,56 @@
       <a class="ig-link" href="https://www.instagram.com/divoceduo" target="_blank" rel="noopener" aria-label="Instagram @divoceduo"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><use href="#ig"/></svg></a>
       <a class="ig-link" href="https://www.facebook.com/61593947932209/" target="_blank" rel="noopener" aria-label="Facebook Divoce duo"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><use href="#fb"/></svg></a>
     </header>
-    <div class="logo">
+    <h1 class="logo">
       <img src="assets/divoce-logo-ruzova.svg" alt="Divoce! chceme liDI, chceme VOlnost, chceme hodně tanCE">
-    </div>
+    </h1>
+
+    <!-- Upcoming concerts: a card hides itself once data-end has passed,
+         the whole block hides when no card is left. -->
+    <section class="gigs" aria-labelledby="gigs-title">
+      <h2 class="label" id="gigs-title">Kde nás uslyšíte</h2>
+      <div class="gigs__list">
+        <article class="gig" data-end="2026-12-05T16:00:00+01:00">
+          <div class="gig__date"><span class="gig__day display">5.&nbsp;12.</span>sobota</div>
+          <div class="gig__info">
+            <h3 class="gig__place display">Léčebné lázně Bohdaneč</h3>
+            <p class="gig__note">Soukromá akce</p>
+            <p class="gig__time">15:00–16:00</p>
+          </div>
+        </article>
+        <article class="gig" data-end="2026-12-13T17:00:00+01:00">
+          <div class="gig__date"><span class="gig__day display">13.&nbsp;12.</span>neděle</div>
+          <div class="gig__info">
+            <h3 class="gig__place display">Zámek Pardubice</h3>
+            <p class="gig__note">Koncert v&nbsp;rámci akce Advent s&nbsp;vůní perníku</p>
+            <p class="gig__time">15:30–16:00 <span>a</span> 16:30–17:00</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </section>
+
+  <section class="past" aria-labelledby="past-title">
     <article class="ticket">
       <div class="ticket__photo">
-        <img src="assets/divoce-duo.jpg" alt="Divoce duo na pódiu">
+        <img class="is-on" src="assets/koncert-2026-10-31/uvod/01.jpg" alt="" style="--x:50%;--y:60%">
+        <img src="assets/koncert-2026-10-31/uvod/02.jpg" alt="" style="--x:38%;--y:75%">
+        <img src="assets/koncert-2026-10-31/uvod/03.jpg" alt="" style="--x:42%;--y:40%">
+        <img src="assets/koncert-2026-10-31/uvod/04.jpg" alt="" style="--x:68%;--y:55%">
+        <img src="assets/koncert-2026-10-31/uvod/05.jpg" alt="" style="--x:72%;--y:50%">
+        <button class="ticket__zoom" type="button" aria-label="Otevřít fotky z koncertu"></button>
       </div>
       <div class="ticket__body">
         <div class="ticket__head">
           <span class="label">Koncert · odehráno</span>
-          <h1>Divoce! aneb Holky na tahu</h1>
+          <h2 class="display" id="past-title">Divoce! aneb Holky na tahu</h2>
         </div>
         <dl>
           <dt>Kdy</dt><dd class="strong">sobota 31.&nbsp;10.&nbsp;2026</dd>
           <dt>Kde</dt><dd>Music Club Žlutý pes, Pardubice</dd>
         </dl>
-        <p class="thanks">Děkujeme všem, kdo s&nbsp;námi byli! Fotky z&nbsp;koncertu sem brzy přidáme.</p>
+        <p class="thanks">Děkujeme všem, kdo s&nbsp;námi byli!</p>
+        <button class="cta" type="button" data-open-gallery>Fotky z&nbsp;koncertu<svg viewBox="0 0 28 16" aria-hidden="true"><use href="#arrow"/></svg></button>
       </div>
     </article>
   </section>
@@ -340,5 +543,127 @@
     </div>
   </section>
 
+  <dialog class="gallery" id="gallery" aria-labelledby="gallery-title">
+    <div class="gallery__bar">
+      <h2 class="label" id="gallery-title">Fotky z&nbsp;koncertu · 31.&nbsp;10.&nbsp;2026</h2>
+      <button class="icon-btn" type="button" data-close aria-label="Zavřít"><svg aria-hidden="true"><use href="#close"/></svg></button>
+    </div>
+    <div class="gallery__grid"></div>
+    <!-- photographer credit: fill in the name and drop "hidden" -->
+    <p class="gallery__credit" hidden>Foto: </p>
+    <div class="viewer" hidden>
+      <img class="viewer__img" alt="">
+      <button class="icon-btn viewer__nav viewer__nav--prev" type="button" aria-label="Předchozí fotka"><svg aria-hidden="true"><use href="#chev"/></svg></button>
+      <button class="icon-btn viewer__nav viewer__nav--next" type="button" aria-label="Další fotka"><svg aria-hidden="true" style="scale:-1 1"><use href="#chev"/></svg></button>
+      <button class="icon-btn viewer__close" type="button" aria-label="Zavřít fotku"><svg aria-hidden="true"><use href="#close"/></svg></button>
+      <span class="viewer__count"></span>
+    </div>
+  </dialog>
+
+<script>
+(() => {
+  // Upcoming concerts: hide the ones that are over
+  const now = Date.now();
+  document.querySelectorAll('.gig[data-end]').forEach(g => {
+    if (Date.parse(g.dataset.end) < now) g.hidden = true;
+  });
+  const gigs = document.querySelector('.gigs');
+  if (gigs && !gigs.querySelector('.gig:not([hidden])')) gigs.hidden = true;
+
+  // Concert photos: 01–05 are the intro set (crossfade), the rest follow in the gallery
+  const DIR = 'assets/koncert-2026-10-31/';
+  const COUNT = 27;
+  const pad = n => String(n).padStart(2, '0');
+  const photos = Array.from({ length: COUNT }, (_, i) => ({
+    full: `${DIR}${pad(i + 1)}.jpg`,
+    thumb: `${DIR}nahled/${pad(i + 1)}.jpg`,
+    alt: `Fotka z koncertu ${i + 1} z ${COUNT}`,
+  }));
+
+  const dialog = document.getElementById('gallery');
+
+  // Crossfade of the intro photos in the card
+  const slides = [...document.querySelectorAll('.ticket__photo img')];
+  let current = 0;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && slides.length > 1) {
+    setInterval(() => {
+      if (document.hidden || dialog.open) return;
+      slides[current].classList.remove('is-on');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('is-on');
+    }, 5000);
+  }
+
+  // Gallery
+  const grid = dialog.querySelector('.gallery__grid');
+  const viewer = dialog.querySelector('.viewer');
+  const vImg = viewer.querySelector('.viewer__img');
+  const vCount = viewer.querySelector('.viewer__count');
+  let index = 0;
+  let viewerOnly = false; // opened straight from the card photo: closing the photo closes the gallery
+
+  grid.innerHTML = photos.map((p, i) =>
+    `<button type="button" data-i="${i}" aria-label="${p.alt}"><img src="${p.thumb}" alt="" loading="lazy" decoding="async"></button>`
+  ).join('');
+
+  const preload = i => { const im = new Image(); im.src = photos[(i + COUNT) % COUNT].full; };
+  const show = i => {
+    index = (i + COUNT) % COUNT;
+    vImg.src = photos[index].full;
+    vImg.alt = photos[index].alt;
+    vCount.textContent = `${index + 1} / ${COUNT}`;
+    preload(index + 1);
+    preload(index - 1);
+  };
+  const openViewer = i => { show(i); viewer.hidden = false; viewer.querySelector('.viewer__close').focus(); };
+  const closeViewer = () => {
+    viewer.hidden = true;
+    if (viewerOnly) { dialog.close(); return; }
+    grid.querySelector(`[data-i="${index}"]`)?.focus();
+  };
+  const openGallery = (i = null) => {
+    viewerOnly = i !== null;
+    viewer.hidden = true;
+    dialog.showModal();
+    dialog.scrollTop = 0;
+    if (i !== null) openViewer(i);
+  };
+
+  document.querySelector('[data-open-gallery]').addEventListener('click', () => openGallery());
+  document.querySelector('.ticket__zoom').addEventListener('click', () => openGallery(current));
+  dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());
+  grid.addEventListener('click', e => {
+    const b = e.target.closest('[data-i]');
+    if (b) { viewerOnly = false; openViewer(+b.dataset.i); }
+  });
+  viewer.querySelector('.viewer__close').addEventListener('click', closeViewer);
+  viewer.querySelector('.viewer__nav--prev').addEventListener('click', () => show(index - 1));
+  viewer.querySelector('.viewer__nav--next').addEventListener('click', () => show(index + 1));
+  // click on the dark area next to the photo closes it
+  viewer.addEventListener('click', e => { if (e.target === viewer) closeViewer(); });
+
+  // Esc: first the single photo, then the gallery
+  dialog.addEventListener('cancel', e => {
+    if (!viewer.hidden) { e.preventDefault(); closeViewer(); }
+  });
+  dialog.addEventListener('keydown', e => {
+    if (viewer.hidden) return;
+    if (e.key === 'ArrowLeft') show(index - 1);
+    if (e.key === 'ArrowRight') show(index + 1);
+  });
+
+  // swipe left/right on touch screens
+  let x0 = null, y0 = null;
+  viewer.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  viewer.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    const dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) show(index + (dx < 0 ? 1 : -1));
+    x0 = null;
+  });
+})();
+</script>
 </body>
 </html>
