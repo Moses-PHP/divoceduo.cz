@@ -23,11 +23,15 @@ tmavé téma (pozadí `#1b0102`, růžové písmo, karta `#391115`). Vstupné by
 - **Kde nás uslyšíte** (hero pod logem): karty `.gig` s `data-end` (konec koncertu, ISO s časovou
   zónou) – po skončení se karta sama schová, bez karet se schová celý blok. Nový koncert = zkopírovat
   `<article class="gig">`.
-- **Fotky z koncertu 31. 10.** v `assets/koncert-2026-10-31/`: `01–27.jpg` (2000 px, bez EXIF),
-  `nahled/` (600 px, mřížka galerie), `uvod/01–05.jpg` (1400 px, předem tónované do palety stejně
-  jako filtr `#tone`, prolínají se v kartě; výřez `--x/--y` na každém `<img>`). Pořadí: 1–5 úvodní
-  fotky, dál originály podle názvu. Galerie = `<dialog>` s mřížkou a prohlížečem (šipky, klávesy,
-  swipe, Esc). Autor fotek: Tomáš Kubelka (`.gallery__credit` pod mřížkou).
+- **Odehráno** (sekce `.past`, nejnovější nahoře): karta `.ticket` na každou akci s fotkami.
+  Atributy karty: `data-dir` (složka fotek), `data-count`, `data-title` (nadpis galerie),
+  `data-credit` (autor fotek). Ve složce `01–NN.jpg` (2000 px, bez EXIF), `nahled/` (600 px,
+  mřížka galerie) a `uvod/` (1400 px, předem tónované do palety jako filtr `#tone`, prolínají
+  se v kartě; výřez `--x/--y` na každém `<img>`). Pořadí: úvodní fotky, pak ostatní podle názvu.
+  Galerie = jeden `<dialog>` s mřížkou a prohlížečem (šipky, klávesy, swipe, Esc), plní se podle karty.
+  - `assets/koncert-2026-10-31/` – Divoce! aneb Holky na tahu, 27 fotek (5 úvodních), foto Tomáš Kubelka
+  - `assets/sestra-2026-10-21/` – Sestra Pardubického kraje 2026, Kino Sirius, 9 fotek (úvodní
+    IMG_5636, 5604, 5619), foto Tomáš Karlík (podle EXIF „TOMAS KARLIK“, www.tomaskarlik.com)
 
 Náhled: `python3 -m http.server` v kořeni repa a otevřít http://localhost:8000/
 (stačí i otevřít `index.html`).

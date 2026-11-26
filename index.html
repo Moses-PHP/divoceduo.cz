@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Divoce · duo z Pardubic</title>
-<meta name="description" content="Divoce – dvě holky z Pardubic, Alice Vacková a Adéla Gottvaldová. Kde nás uslyšíte a fotky z koncertu Divoce! aneb Holky na tahu (31. 10. 2026, Music Club Žlutý pes).">
+<meta name="description" content="Divoce – dvě holky z Pardubic, Alice Vacková a Adéla Gottvaldová. Kde nás uslyšíte a fotky z našich koncertů a vystoupení.">
 <meta name="theme-color" content="#1b0102">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Divoce · duo z Pardubic">
-<meta property="og:description" content="Dvě holky z Pardubic · kde nás uslyšíte a fotky z koncertu Divoce! aneb Holky na tahu">
+<meta property="og:description" content="Dvě holky z Pardubic · kde nás uslyšíte a fotky z koncertů a vystoupení">
 <meta property="og:url" content="https://divoceduo.cz/">
 <meta property="og:image" content="https://divoceduo.cz/assets/divoce-duo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -179,7 +179,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: clamp(20px, 2.4vw, 32px);
     padding: clamp(48px, 6vw, 90px) var(--pad-x);
     border-top: 1px solid var(--line);
   }
@@ -241,6 +241,13 @@
     }
   }
   .ticket__head { display: flex; flex-direction: column; gap: 10px; }
+  .ticket__sub {
+    margin: 0;
+    font-family: 'Noto Serif Display', serif;
+    font-size: clamp(22px, 2.2vw, 28px);
+    font-style: italic;
+    font-stretch: condensed;
+  }
   .ticket h2 { font-size: clamp(40px, 5vw, 64px); }
   dl {
     margin: 0;
@@ -337,6 +344,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 50% 25%; /* keep heads in portrait shots */
     transition: transform .4s ease;
   }
   .gallery__grid button:hover img { transform: scale(1.04); }
@@ -494,8 +502,11 @@
     </section>
   </section>
 
-  <section class="past" aria-labelledby="past-title">
-    <article class="ticket">
+  <!-- Past events, newest first. Each card: data-dir (photos NN.jpg, nahled/NN.jpg,
+       uvod/NN.jpg = pre-toned intro set), data-count, gallery title + photographer credit. -->
+  <section class="past" aria-label="Odehráno">
+    <article class="ticket" data-dir="assets/koncert-2026-10-31/" data-count="27"
+             data-title="Fotky z&nbsp;koncertu · 31.&nbsp;10.&nbsp;2026" data-credit="Foto: Tomáš Kubelka">
       <div class="ticket__photo">
         <img class="is-on" src="assets/koncert-2026-10-31/uvod/01.jpg" alt="" style="--x:50%;--y:60%">
         <img src="assets/koncert-2026-10-31/uvod/02.jpg" alt="" style="--x:38%;--y:75%">
@@ -507,13 +518,35 @@
       <div class="ticket__body">
         <div class="ticket__head">
           <span class="label">Koncert · odehráno</span>
-          <h2 class="display" id="past-title">Divoce! aneb Holky na tahu</h2>
+          <h2 class="display">Divoce! aneb Holky na tahu</h2>
         </div>
         <dl>
           <dt>Kdy</dt><dd class="strong">sobota 31.&nbsp;10.&nbsp;2026</dd>
           <dt>Kde</dt><dd>Music Club Žlutý pes, Pardubice</dd>
         </dl>
         <button class="cta" type="button" data-open-gallery>Fotky z&nbsp;koncertu<svg viewBox="0 0 28 16" aria-hidden="true"><use href="#arrow"/></svg></button>
+      </div>
+    </article>
+
+    <article class="ticket" data-dir="assets/sestra-2026-10-21/" data-count="9"
+             data-title="Fotky · Sestra Pardubického kraje 2026" data-credit="Foto: Tomáš Karlík">
+      <div class="ticket__photo">
+        <img class="is-on" src="assets/sestra-2026-10-21/uvod/01.jpg" alt="" style="--x:45%;--y:55%">
+        <img src="assets/sestra-2026-10-21/uvod/02.jpg" alt="" style="--x:50%;--y:55%">
+        <img src="assets/sestra-2026-10-21/uvod/03.jpg" alt="" style="--x:55%;--y:50%">
+        <button class="ticket__zoom" type="button" aria-label="Otevřít fotky z vystoupení"></button>
+      </div>
+      <div class="ticket__body">
+        <div class="ticket__head">
+          <span class="label">Vystoupení · odehráno</span>
+          <h2 class="display">Sestra Pardubického kraje</h2>
+          <p class="ticket__sub">Ročník 2026</p>
+        </div>
+        <dl>
+          <dt>Kdy</dt><dd class="strong">středa 21.&nbsp;10.&nbsp;2026</dd>
+          <dt>Kde</dt><dd>Kino Sirius, Pardubice</dd>
+        </dl>
+        <button class="cta" type="button" data-open-gallery>Fotky z&nbsp;vystoupení<svg viewBox="0 0 28 16" aria-hidden="true"><use href="#arrow"/></svg></button>
       </div>
     </article>
   </section>
@@ -535,11 +568,11 @@
 
   <dialog class="gallery" id="gallery" aria-labelledby="gallery-title">
     <div class="gallery__bar">
-      <h2 class="label" id="gallery-title">Fotky z&nbsp;koncertu · 31.&nbsp;10.&nbsp;2026</h2>
+      <h2 class="label" id="gallery-title"></h2>
       <button class="icon-btn" type="button" data-close aria-label="Zavřít"><svg aria-hidden="true"><use href="#close"/></svg></button>
     </div>
     <div class="gallery__grid"></div>
-    <p class="gallery__credit">Foto: Tomáš Kubelka</p>
+    <p class="gallery__credit"></p>
     <div class="viewer" hidden>
       <img class="viewer__img" alt="">
       <button class="icon-btn viewer__nav viewer__nav--prev" type="button" aria-label="Předchozí fotka"><svg aria-hidden="true"><use href="#chev"/></svg></button>
@@ -559,49 +592,24 @@
   const gigs = document.querySelector('.gigs');
   if (gigs && !gigs.querySelector('.gig:not([hidden])')) gigs.hidden = true;
 
-  // Concert photos: 01–05 are the intro set (crossfade), the rest follow in the gallery
-  const DIR = 'assets/koncert-2026-10-31/';
-  const COUNT = 27;
-  const pad = n => String(n).padStart(2, '0');
-  const photos = Array.from({ length: COUNT }, (_, i) => ({
-    full: `${DIR}${pad(i + 1)}.jpg`,
-    thumb: `${DIR}nahled/${pad(i + 1)}.jpg`,
-    alt: `Fotka z koncertu ${i + 1} z ${COUNT}`,
-  }));
-
   const dialog = document.getElementById('gallery');
-
-  // Crossfade of the intro photos in the card
-  const slides = [...document.querySelectorAll('.ticket__photo img')];
-  let current = 0;
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reduce && slides.length > 1) {
-    setInterval(() => {
-      if (document.hidden || dialog.open) return;
-      slides[current].classList.remove('is-on');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('is-on');
-    }, 5000);
-  }
-
-  // Gallery
   const grid = dialog.querySelector('.gallery__grid');
   const viewer = dialog.querySelector('.viewer');
   const vImg = viewer.querySelector('.viewer__img');
   const vCount = viewer.querySelector('.viewer__count');
+  const pad = n => String(n).padStart(2, '0');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let photos = [];
   let index = 0;
   let viewerOnly = false; // opened straight from the card photo: closing the photo closes the gallery
 
-  grid.innerHTML = photos.map((p, i) =>
-    `<button type="button" data-i="${i}" aria-label="${p.alt}"><img src="${p.thumb}" alt="" loading="lazy" decoding="async"></button>`
-  ).join('');
-
-  const preload = i => { const im = new Image(); im.src = photos[(i + COUNT) % COUNT].full; };
+  // Gallery: one dialog, filled with the photos of the card that opened it
+  const preload = i => { const im = new Image(); im.src = photos[(i + photos.length) % photos.length].full; };
   const show = i => {
-    index = (i + COUNT) % COUNT;
+    index = (i + photos.length) % photos.length;
     vImg.src = photos[index].full;
     vImg.alt = photos[index].alt;
-    vCount.textContent = `${index + 1} / ${COUNT}`;
+    vCount.textContent = `${index + 1} / ${photos.length}`;
     preload(index + 1);
     preload(index - 1);
   };
@@ -611,7 +619,18 @@
     if (viewerOnly) { dialog.close(); return; }
     grid.querySelector(`[data-i="${index}"]`)?.focus();
   };
-  const openGallery = (i = null) => {
+  const openGallery = (card, i = null) => {
+    const { dir, count, title, credit } = card.dataset;
+    photos = Array.from({ length: +count }, (_, k) => ({
+      full: `${dir}${pad(k + 1)}.jpg`,
+      thumb: `${dir}nahled/${pad(k + 1)}.jpg`,
+      alt: `Fotka ${k + 1} z ${count}`,
+    }));
+    dialog.querySelector('#gallery-title').innerHTML = title;
+    dialog.querySelector('.gallery__credit').textContent = credit || '';
+    grid.innerHTML = photos.map((p, k) =>
+      `<button type="button" data-i="${k}" aria-label="${p.alt}"><img src="${p.thumb}" alt="" loading="lazy" decoding="async"></button>`
+    ).join('');
     viewerOnly = i !== null;
     viewer.hidden = true;
     dialog.showModal();
@@ -619,8 +638,22 @@
     if (i !== null) openViewer(i);
   };
 
-  document.querySelector('[data-open-gallery]').addEventListener('click', () => openGallery());
-  document.querySelector('.ticket__zoom').addEventListener('click', () => openGallery(current));
+  // Each past-event card: crossfade of its intro photos + buttons into the gallery
+  document.querySelectorAll('.ticket[data-dir]').forEach(card => {
+    const slides = [...card.querySelectorAll('.ticket__photo img')];
+    let current = 0;
+    if (!reduce && slides.length > 1) {
+      setInterval(() => {
+        if (document.hidden || dialog.open) return;
+        slides[current].classList.remove('is-on');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('is-on');
+      }, 5000);
+    }
+    card.querySelector('[data-open-gallery]').addEventListener('click', () => openGallery(card));
+    card.querySelector('.ticket__zoom').addEventListener('click', () => openGallery(card, current));
+  });
+
   dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());
   grid.addEventListener('click', e => {
     const b = e.target.closest('[data-i]');
