@@ -310,19 +310,24 @@
   .cta:hover { background: color-mix(in srgb, var(--ink) 10%, transparent); }
   .cta svg { width: 24px; height: 14px; flex: none; }
 
-  /* Gallery: full-screen dialog with a thumbnail grid and a single-photo viewer */
+  /* Gallery: a window with the thumbnail grid over the dimmed page,
+     the single-photo viewer inside it is full-screen */
   .gallery {
-    width: 100%;
+    width: min(100% - 32px, 1100px);
     max-width: none;
-    height: 100%;
-    max-height: none;
-    margin: 0;
+    max-height: min(100% - 48px, 920px);
+    margin: auto;
     padding: 0;
-    border: 0;
+    border: 1px solid var(--line);
+    border-radius: 18px;
     background: var(--bg);
     color: var(--ink);
+    overscroll-behavior: contain;
   }
-  .gallery::backdrop { background: var(--bg); }
+  .gallery::backdrop {
+    background: rgba(14, 0, 1, .82);
+    backdrop-filter: blur(6px);
+  }
   .gallery__bar {
     position: sticky;
     top: 0;
@@ -331,7 +336,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    padding: 14px var(--pad-x);
+    padding: 14px clamp(16px, 2.4vw, 28px);
     background: color-mix(in srgb, var(--bg) 92%, transparent);
     backdrop-filter: blur(8px);
   }
@@ -353,7 +358,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(46%, 220px), 1fr));
     gap: 8px;
-    padding: 8px var(--pad-x) 24px;
+    padding: 4px clamp(16px, 2.4vw, 28px) 24px;
   }
   .gallery__grid button {
     display: block;
@@ -376,7 +381,7 @@
   .gallery__grid button:hover img { transform: scale(1.04); }
   .gallery__credit {
     margin: 0;
-    padding: 0 var(--pad-x) 32px;
+    padding: 0 16px 24px;
     font-size: 14px;
     font-style: italic;
     text-align: center;
@@ -678,6 +683,12 @@
   });
 
   dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());
+  // click on the dimmed page around the window closes the gallery
+  dialog.addEventListener('click', e => {
+    if (e.target !== dialog || !viewer.hidden) return;
+    const r = dialog.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dialog.close();
+  });
   grid.addEventListener('click', e => {
     const b = e.target.closest('[data-i]');
     if (b) { viewerOnly = false; openViewer(+b.dataset.i); }

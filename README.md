@@ -34,7 +34,7 @@ tmavé téma (pozadí `#1b0102`, růžové písmo, karta `#391115`). Vstupné by
   `data-credit` (autor fotek). Ve složce `01–NN.jpg` (2000 px, bez EXIF), `nahled/` (600 px,
   mřížka galerie) a `uvod/` (1400 px, předem tónované do palety jako filtr `#tone`, prolínají
   se v kartě; výřez `--x/--y` na každém `<img>`). Pořadí: úvodní fotky, pak ostatní podle názvu.
-  Galerie = jeden `<dialog>` s mřížkou a prohlížečem (šipky, klávesy, swipe, Esc), plní se podle karty.
+  Galerie = jeden `<dialog>` jako okno nad ztmavenou stránkou (mřížka náhledů), zvětšená fotka přes celou obrazovku (šipky, klávesy, swipe, Esc), plní se podle karty.
   - `assets/koncert-2026-10-31/` – Divoce! aneb Holky na tahu, 27 fotek (5 úvodních), foto Tomáš Kubelka
   - `assets/sestra-2026-10-21/` – Sestra Pardubického kraje 2026, Kino Sirius, 9 fotek (úvodní
     IMG_5636, 5604, 5619), foto Tomáš Karlík (podle EXIF „TOMAS KARLIK“, www.tomaskarlik.com)
