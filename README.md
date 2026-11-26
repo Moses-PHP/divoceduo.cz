@@ -27,7 +27,7 @@ tmavé téma (pozadí `#1b0102`, růžové písmo, karta `#391115`). Vstupné by
   `nahled/` (600 px, mřížka galerie), `uvod/01–05.jpg` (1400 px, předem tónované do palety stejně
   jako filtr `#tone`, prolínají se v kartě; výřez `--x/--y` na každém `<img>`). Pořadí: 1–5 úvodní
   fotky, dál originály podle názvu. Galerie = `<dialog>` s mřížkou a prohlížečem (šipky, klávesy,
-  swipe, Esc). Autor fotek: doplnit do `.gallery__credit` a odebrat `hidden`.
+  swipe, Esc). Autor fotek: Tomáš Kubelka (`.gallery__credit` pod mřížkou).
 
 Náhled: `python3 -m http.server` v kořeni repa a otevřít http://localhost:8000/
 (stačí i otevřít `index.html`).
