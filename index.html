@@ -86,6 +86,10 @@
     mask-image: linear-gradient(to bottom, #000 60%, transparent);
     pointer-events: none;
   }
+  /* desktop only – on phones and portrait tablets the hero stays plain */
+  @media not ((min-width: 900px) and (orientation: landscape)) {
+    .hero__bg { display: none; }
+  }
   .hero__photo {
     position: absolute;
     left: var(--bg-photo-x);
