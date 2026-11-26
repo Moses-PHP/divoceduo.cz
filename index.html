@@ -174,35 +174,39 @@
     .gigs { margin-bottom: auto; }
   }
 
-  /* Past concert: crossfading photos + gallery */
+  /* Past events: grid of cards (photo on top, short text below), newest first */
   .past {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: clamp(20px, 2.4vw, 32px);
+    gap: 16px;
     padding: clamp(48px, 6vw, 90px) var(--pad-x);
     border-top: 1px solid var(--line);
   }
-  .ticket {
+  .past__list {
     width: min(100%, 1040px);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+    gap: 16px;
+  }
+  .ticket {
+    display: flex;
+    flex-direction: column;
     background: var(--card);
     color: var(--card-ink);
     border-radius: 18px;
     overflow: hidden;
     /* overflow alone does not clip the masked photo to the rounded corners */
     clip-path: inset(0 round 18px);
-    container-type: inline-size;
-    --photo-fade: 83%;
   }
-  /* photos are pre-toned into the palette (assets/koncert-…/uvod/) and fade into the card */
+  /* photos are pre-toned into the palette (assets/…/uvod/) and fade down into the card;
+     framing per photo: --x/--y focal point, --zoom */
   .ticket__photo {
     position: relative;
-    min-height: clamp(360px, 44vw, 480px);
+    aspect-ratio: 16 / 10;
     overflow: hidden;
-    -webkit-mask-image: linear-gradient(to right, #000 var(--photo-fade), transparent);
-    mask-image: linear-gradient(to right, #000 var(--photo-fade), transparent);
+    -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent);
+    mask-image: linear-gradient(to bottom, #000 72%, transparent);
   }
   .ticket__photo img {
     position: absolute;
@@ -211,6 +215,8 @@
     height: 100%;
     object-fit: cover;
     object-position: var(--x, 50%) var(--y, 50%);
+    transform: scale(var(--zoom, 1));
+    transform-origin: var(--x, 50%) var(--y, 50%);
     opacity: 0;
     transition: opacity 1.8s ease;
   }
@@ -225,64 +231,44 @@
   }
   .ticket__zoom:focus-visible { outline: 2px solid var(--ink); outline-offset: -6px; }
   .ticket__body {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 28px;
-    padding: clamp(24px, 3.4vw, 44px);
+    align-items: flex-start;
+    gap: 8px;
+    padding: 4px clamp(22px, 2.6vw, 30px) clamp(22px, 2.6vw, 30px);
   }
-  /* Stacked card (narrow screens): the photo fades out downwards */
-  @container (max-width: 639px) {
-    .ticket__photo {
-      min-height: 300px;
-      --photo-fade: 78%;
-      -webkit-mask-image: linear-gradient(to bottom, #000 var(--photo-fade), transparent);
-      mask-image: linear-gradient(to bottom, #000 var(--photo-fade), transparent);
-    }
-  }
-  .ticket__head { display: flex; flex-direction: column; gap: 10px; }
+  .ticket h3 { font-size: clamp(26px, 2.4vw, 32px); }
   .ticket__sub {
-    margin: 0;
+    margin: -2px 0 0;
     font-family: 'Noto Serif Display', serif;
-    font-size: clamp(22px, 2.2vw, 28px);
+    font-size: 20px;
     font-style: italic;
     font-stretch: condensed;
   }
-  .ticket h2 { font-size: clamp(40px, 5vw, 64px); }
-  dl {
-    margin: 0;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    column-gap: 22px;
-    row-gap: 10px;
-    font-size: 18px;
+  .ticket__meta {
+    margin: 4px 0 16px;
+    font-size: 16px;
+    line-height: 1.45;
   }
-  dt { font-style: italic; font-stretch: condensed; }
-  dd { margin: 0; }
-  .strong { font-weight: 600; }
+  .ticket__meta strong { font-weight: 600; }
   .cta {
-    display: flex;
-    justify-content: space-between;
+    display: inline-flex;
     align-items: center;
     gap: 14px;
-    width: 100%;
-    padding: 18px 26px;
-    border: 0;
-    background: var(--card-ink);
-    color: var(--card);
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 600;
+    margin-top: auto;
+    padding: 12px 20px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    background: none;
+    color: var(--ink);
+    font-size: 13px;
     letter-spacing: .2em;
     text-transform: uppercase;
-    border-radius: 999px;
     cursor: pointer;
   }
-  .cta:hover { opacity: .88; }
-  .cta svg { width: 28px; height: 16px; flex: none; }
-  @container (max-width: 420px) {
-    .cta { padding-inline: 22px; font-size: 14px; letter-spacing: .12em; }
-  }
+  .cta:hover { background: color-mix(in srgb, var(--ink) 10%, transparent); }
+  .cta svg { width: 24px; height: 14px; flex: none; }
 
   /* Gallery: full-screen dialog with a thumbnail grid and a single-photo viewer */
   .gallery {
@@ -504,51 +490,44 @@
 
   <!-- Past events, newest first. Each card: data-dir (photos NN.jpg, nahled/NN.jpg,
        uvod/NN.jpg = pre-toned intro set), data-count, gallery title + photographer credit. -->
-  <section class="past" aria-label="Odehráno">
-    <article class="ticket" data-dir="assets/koncert-2026-10-31/" data-count="27"
-             data-title="Fotky z&nbsp;koncertu · 31.&nbsp;10.&nbsp;2026" data-credit="Foto: Tomáš Kubelka">
-      <div class="ticket__photo">
-        <img class="is-on" src="assets/koncert-2026-10-31/uvod/01.jpg" alt="" style="--x:50%;--y:60%">
-        <img src="assets/koncert-2026-10-31/uvod/02.jpg" alt="" style="--x:38%;--y:75%">
-        <img src="assets/koncert-2026-10-31/uvod/03.jpg" alt="" style="--x:42%;--y:40%">
-        <img src="assets/koncert-2026-10-31/uvod/04.jpg" alt="" style="--x:68%;--y:55%">
-        <img src="assets/koncert-2026-10-31/uvod/05.jpg" alt="" style="--x:72%;--y:50%">
-        <button class="ticket__zoom" type="button" aria-label="Otevřít fotky z koncertu"></button>
-      </div>
-      <div class="ticket__body">
-        <div class="ticket__head">
-          <span class="label">Koncert · odehráno</span>
-          <h2 class="display">Divoce! aneb Holky na tahu</h2>
+  <section class="past" aria-labelledby="past-title">
+    <h2 class="label" id="past-title">Odehráno</h2>
+    <div class="past__list">
+      <article class="ticket" data-dir="assets/koncert-2026-10-31/" data-count="27"
+               data-title="Fotky z&nbsp;koncertu · 31.&nbsp;10.&nbsp;2026" data-credit="Foto: Tomáš Kubelka">
+        <div class="ticket__photo">
+          <img class="is-on" src="assets/koncert-2026-10-31/uvod/01.jpg" alt="" style="--x:50%;--y:70%">
+          <img src="assets/koncert-2026-10-31/uvod/02.jpg" alt="" style="--x:50%;--y:100%;--zoom:1.6">
+          <img src="assets/koncert-2026-10-31/uvod/03.jpg" alt="" style="--x:45%;--y:40%">
+          <img src="assets/koncert-2026-10-31/uvod/04.jpg" alt="" style="--x:68%;--y:55%">
+          <img src="assets/koncert-2026-10-31/uvod/05.jpg" alt="" style="--x:72%;--y:50%">
+          <button class="ticket__zoom" type="button" aria-label="Otevřít fotky z koncertu"></button>
         </div>
-        <dl>
-          <dt>Kdy</dt><dd class="strong">sobota 31.&nbsp;10.&nbsp;2026</dd>
-          <dt>Kde</dt><dd>Music Club Žlutý pes, Pardubice</dd>
-        </dl>
-        <button class="cta" type="button" data-open-gallery>Fotky z&nbsp;koncertu<svg viewBox="0 0 28 16" aria-hidden="true"><use href="#arrow"/></svg></button>
-      </div>
-    </article>
+        <div class="ticket__body">
+          <span class="label">Koncert</span>
+          <h3 class="display">Divoce! aneb Holky na tahu</h3>
+          <p class="ticket__meta"><strong>31.&nbsp;10.&nbsp;2026</strong> · Music Club Žlutý pes, Pardubice</p>
+          <button class="cta" type="button" data-open-gallery>Fotky<svg viewBox="0 0 28 16" aria-hidden="true"><use href="#arrow"/></svg></button>
+        </div>
+      </article>
 
-    <article class="ticket" data-dir="assets/sestra-2026-10-21/" data-count="9"
-             data-title="Fotky · Sestra Pardubického kraje 2026" data-credit="Foto: Tomáš Karlík">
-      <div class="ticket__photo">
-        <img class="is-on" src="assets/sestra-2026-10-21/uvod/01.jpg" alt="" style="--x:45%;--y:55%">
-        <img src="assets/sestra-2026-10-21/uvod/02.jpg" alt="" style="--x:50%;--y:55%">
-        <img src="assets/sestra-2026-10-21/uvod/03.jpg" alt="" style="--x:55%;--y:50%">
-        <button class="ticket__zoom" type="button" aria-label="Otevřít fotky z vystoupení"></button>
-      </div>
-      <div class="ticket__body">
-        <div class="ticket__head">
-          <span class="label">Vystoupení · odehráno</span>
-          <h2 class="display">Sestra Pardubického kraje</h2>
-          <p class="ticket__sub">Ročník 2026</p>
+      <article class="ticket" data-dir="assets/sestra-2026-10-21/" data-count="9"
+               data-title="Fotky · Sestra Pardubického kraje 2026" data-credit="Foto: Tomáš Karlík">
+        <div class="ticket__photo">
+          <img class="is-on" src="assets/sestra-2026-10-21/uvod/01.jpg" alt="" style="--x:45%;--y:60%">
+          <img src="assets/sestra-2026-10-21/uvod/02.jpg" alt="" style="--x:50%;--y:60%">
+          <img src="assets/sestra-2026-10-21/uvod/03.jpg" alt="" style="--x:55%;--y:50%">
+          <button class="ticket__zoom" type="button" aria-label="Otevřít fotky z vystoupení"></button>
         </div>
-        <dl>
-          <dt>Kdy</dt><dd class="strong">středa 21.&nbsp;10.&nbsp;2026</dd>
-          <dt>Kde</dt><dd>Kino Sirius, Pardubice</dd>
-        </dl>
-        <button class="cta" type="button" data-open-gallery>Fotky z&nbsp;vystoupení<svg viewBox="0 0 28 16" aria-hidden="true"><use href="#arrow"/></svg></button>
-      </div>
-    </article>
+        <div class="ticket__body">
+          <span class="label">Vystoupení</span>
+          <h3 class="display">Sestra Pardubického kraje</h3>
+          <p class="ticket__sub">Ročník 2026</p>
+          <p class="ticket__meta"><strong>21.&nbsp;10.&nbsp;2026</strong> · Kino Sirius, Pardubice</p>
+          <button class="cta" type="button" data-open-gallery>Fotky<svg viewBox="0 0 28 16" aria-hidden="true"><use href="#arrow"/></svg></button>
+        </div>
+      </article>
+    </div>
   </section>
 
   <section class="about">
@@ -639,16 +618,19 @@
   };
 
   // Each past-event card: crossfade of its intro photos + buttons into the gallery
-  document.querySelectorAll('.ticket[data-dir]').forEach(card => {
+  // cards take turns (offset by half the interval) instead of fading all at once
+  const SLIDE_MS = 5000;
+  document.querySelectorAll('.ticket[data-dir]').forEach((card, n) => {
     const slides = [...card.querySelectorAll('.ticket__photo img')];
     let current = 0;
     if (!reduce && slides.length > 1) {
-      setInterval(() => {
+      const step = () => {
         if (document.hidden || dialog.open) return;
         slides[current].classList.remove('is-on');
         current = (current + 1) % slides.length;
         slides[current].classList.add('is-on');
-      }, 5000);
+      };
+      setTimeout(() => setInterval(step, SLIDE_MS), (n % 2) * SLIDE_MS / 2);
     }
     card.querySelector('[data-open-gallery]').addEventListener('click', () => openGallery(card));
     card.querySelector('.ticket__zoom').addEventListener('click', () => openGallery(card, current));

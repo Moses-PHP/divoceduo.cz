@@ -23,7 +23,9 @@ tmavé téma (pozadí `#1b0102`, růžové písmo, karta `#391115`). Vstupné by
 - **Kde nás uslyšíte** (hero pod logem): karty `.gig` s `data-end` (konec koncertu, ISO s časovou
   zónou) – po skončení se karta sama schová, bez karet se schová celý blok. Nový koncert = zkopírovat
   `<article class="gig">`.
-- **Odehráno** (sekce `.past`, nejnovější nahoře): karta `.ticket` na každou akci s fotkami.
+- **Odehráno** (sekce `.past`, nejnovější první): mřížka menších karet `.ticket` (fotka nahoře,
+  pod ní štítek, nadpis, řádek datum · místo a tlačítko „Fotky“ obrysem). Karty se v prolínání
+  střídají (posun o půl intervalu). Výřez fotky v kartě: `--x/--y` a `--zoom` na `<img>`.
   Atributy karty: `data-dir` (složka fotek), `data-count`, `data-title` (nadpis galerie),
   `data-credit` (autor fotek). Ve složce `01–NN.jpg` (2000 px, bez EXIF), `nahled/` (600 px,
   mřížka galerie) a `uvod/` (1400 px, předem tónované do palety jako filtr `#tone`, prolínají
