@@ -20,6 +20,10 @@ tmavé téma (pozadí `#1b0102`, růžové písmo, karta `#391115`). Vstupné by
 - Černobílá fotka se SVG filtrem `#tone` tónuje do palety (stíny = vínová pozadí) a maskou
   přechází do karty. Výřez řídí proměnné `--photo-x/-y/-zoom/-fade` na `.ticket`.
 
+- **Fotka v pozadí úvodní obrazovky**: `assets/pozadi.jpg` (fotka 4 ze Žlutého psa, tónovaná do palety,
+  2400 px) v `.hero__bg > .hero__photo`, okraje se rozplývají radiální maskou, dole přechod do další
+  sekce. Nastavení v proměnných `--bg-photo-*` na `:root` (viditelnost 8 %, rozmazání 2 px, střed 69 % / 26 %,
+  velikost 1, ostrá část 55 %). Ladění posuvníky: `navrhy/ladeni-pozadi.html` (jen lokálně, přes http server).
 - **Kde nás uslyšíte** (hero pod logem): karty `.gig` s `data-end` (konec koncertu, ISO s časovou
   zónou) – po skončení se karta sama schová, bez karet se schová celý blok. Nový koncert = zkopírovat
   `<article class="gig">`.

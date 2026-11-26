@@ -26,6 +26,14 @@
     --card: #391115;
     --card-ink: #fec3e8;
     --pad-x: clamp(20px, 4vw, 56px);
+    /* faint toned concert photo behind the first screen (hero) */
+    --bg-photo-opacity: .08;
+    --bg-photo-blur: 2px;
+    --bg-photo-x: 69%;   /* centre of the photo within the hero */
+    --bg-photo-y: 26%;
+    --bg-photo-size: 1;
+    --bg-photo-solid: 55%; /* part of the photo before its edges start to dissolve */
+    --bg-photo-flip: 1; /* -1 = mirrored */
   }
   * { box-sizing: border-box; }
   html { background: var(--bg); }
@@ -60,10 +68,38 @@
 
   /* Hero: logo + upcoming concerts fit the first screen on desktop */
   .hero {
+    position: relative;
+    isolation: isolate;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0 var(--pad-x) clamp(40px, 6vh, 72px);
+  }
+  /* Background photo of the first screen: free-floating, its edges dissolve into
+     the dark background (radial mask), the whole layer fades out at the bottom. */
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent);
+    mask-image: linear-gradient(to bottom, #000 60%, transparent);
+    pointer-events: none;
+  }
+  .hero__photo {
+    position: absolute;
+    left: var(--bg-photo-x);
+    top: var(--bg-photo-y);
+    /* size 1 = roughly fills the first screen, also on a tall phone */
+    width: calc(var(--bg-photo-size) * max(100%, 150svh));
+    aspect-ratio: 3 / 2;
+    translate: -50% -50%;
+    scale: var(--bg-photo-flip) 1;
+    background: url(assets/pozadi.jpg) center / cover no-repeat;
+    opacity: var(--bg-photo-opacity);
+    filter: blur(var(--bg-photo-blur));
+    -webkit-mask-image: radial-gradient(closest-side, #000 var(--bg-photo-solid), transparent);
+    mask-image: radial-gradient(closest-side, #000 var(--bg-photo-solid), transparent);
   }
   header {
     align-self: stretch;
@@ -455,6 +491,7 @@
     </symbol>
   </svg>
   <section class="hero">
+    <div class="hero__bg" aria-hidden="true"><div class="hero__photo"></div></div>
     <header>
       <a class="ig-link" href="https://www.instagram.com/divoceduo" target="_blank" rel="noopener" aria-label="Instagram @divoceduo"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><use href="#ig"/></svg></a>
       <a class="ig-link" href="https://www.facebook.com/61593947932209/" target="_blank" rel="noopener" aria-label="Facebook Divoce duo"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><use href="#fb"/></svg></a>
